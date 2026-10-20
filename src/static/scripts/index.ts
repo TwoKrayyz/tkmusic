@@ -1,41 +1,25 @@
-const signupForm = document.getElementById("signupForm") as HTMLFormElement | null;
+const signupForm = document.getElementById("signupForm") as HTMLFormElement;
 
-interface Payload {
-    method: "POST",
-    headers: {
-        "Content-Type": "application/json"
-    },
-    body: string
+async function signupFormHandler(event: SubmitEvent) {
+    event.preventDefault();
+
+    const signupFormData = new FormData(signupForm);
+    const username = signupFormData.get("username");
+    const password = signupFormData.get("password");
+
+    fetch("/signup", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            username: username,
+            password: password
+        })
+    })
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.log(error));
 }
 
-try {
-    async function signupFormHandler(event: SubmitEvent) {
-        event.preventDefault();
-
-        if (!signupForm) return;
-
-        const signupFormData = new FormData(signupForm);
-        const username: FormDataEntryValue | null = signupFormData.get("username");
-        const password: FormDataEntryValue | null = signupFormData.get("password");
-
-        const signupPayload: Payload = {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                username: username,
-                password: password
-            })
-        };
-
-        fetch("/signup", signupPayload)
-        .then(response => response.json())
-        .then(data => console.log(data))
-        .catch(error => console.log(error));
-    }
-
-    signupForm?.addEventListener("submit", signupFormHandler);
-} catch (error) {
-    console.log(error);
-}
+signupForm.addEventListener("submit", signupFormHandler);
