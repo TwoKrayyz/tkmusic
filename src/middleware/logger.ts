@@ -6,7 +6,11 @@ import {
 
 export default function logger(request: Request, response: Response, next: NextFunction) {
     try {
-        console.log(` [ ${request.method} ] ${request.url} `);
+        console.log(
+            request.method,
+            request.url,
+            request.body
+        );
 
         next();
     } catch(error) {
