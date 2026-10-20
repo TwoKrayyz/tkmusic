@@ -5,8 +5,8 @@ import {
 
 type Database = [
     {
-        username: string | number,
-        password: string | number
+        username: string
+        password: string
     }
 ];
 
