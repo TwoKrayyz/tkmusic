@@ -10,7 +10,7 @@ const DATABASE = [
     }
 ];
 
-export default function signup(request: Request, response: Response): void {
+export default function signup(request: Request, response: Response) {
     console.log(request.body);
 
     const USERNAME: string = request.body.username;
