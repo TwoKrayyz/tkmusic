@@ -1,6 +1,7 @@
 import "dotenv/config";
 import logger from "./middleware/logger.js";
 import signup from "./routes/signup.js";
+import error from "./middleware/error.js";
 
 import express from "express";
 import path from "path";
@@ -12,7 +13,7 @@ try {
 
     server.use(express.json());
 
-    server.use(logger);
+    server.use(error, logger);
 
     server.post("/signup", signup);
 
