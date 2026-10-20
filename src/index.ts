@@ -14,7 +14,7 @@ try {
     SERVER.use(
         express.static(
             path.join(
-                import.meta.url,
+                import.meta.dirname,
                 "../src/static"
             )
         )
