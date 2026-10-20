@@ -2,21 +2,21 @@ import "dotenv/config";
 import logger from "./middleware/logger.js";
 import signup from "./routes/signup.js";
 
-import express, { type Express } from "express";
+import express from "express";
 import path from "path";
 
-const SERVER: Express = express();
-const IP: string | undefined = process.env.IP;
-const PORT: string | undefined = process.env.PORT;
-
 try {
-    SERVER.use(express.json());
+    const server = express();
+    const IP = process.env.IP || "127.0.0.1";
+    const PORT = process.env.PORT || 3000;
 
-    SERVER.use(logger);
+    server.use(express.json());
 
-    SERVER.post("/signup", signup);
+    server.use(logger);
 
-    SERVER.use(
+    server.post("/signup", signup);
+
+    server.use(
         express.static(
             path.join(
                 import.meta.dirname,
@@ -25,7 +25,7 @@ try {
         )
     );
 
-    SERVER.listen(PORT, () => {
+    server.listen(PORT, () => {
         console.log(` [ LISTENING ] http://${IP}:${PORT}/`);
     });
 
