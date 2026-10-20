@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "rm -rf dist && npx tsc && node ./dist/index.js"
+    "server": "rm -rf dist && npx tsc && node ./dist/index.js",
+    "frontend": "npx tsc -p tsconfig.frontend.json"
   },
   "type": "module",
   "keywords": [],

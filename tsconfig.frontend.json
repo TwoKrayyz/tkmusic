@@ -1,0 +1,9 @@
+{
+    "compilerOptions": {
+        "rootDir": "./src/static/scripts",
+        "outDir": "./src/static/scripts/dist",
+        "target": "esnext",
+        "module": "esnext"
+    },
+    "include": ["./src/static/scripts/**/*.ts"]
+}
