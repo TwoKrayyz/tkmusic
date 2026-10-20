@@ -11,9 +11,8 @@ try {
     const IP = process.env.IP || "127.0.0.1";
     const PORT = process.env.PORT || 3000;
 
-    server.use(express.json());
-
     server.use(error, logger);
+    server.use(express.json());
 
     server.post("/signup", signup);
 
