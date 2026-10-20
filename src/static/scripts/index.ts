@@ -1,5 +1,13 @@
 const signupForm = document.getElementById("signupForm") as HTMLFormElement | null;
 
+interface Payload {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: string
+}
+
 try {
     async function signupFormHandler(event: SubmitEvent) {
         event.preventDefault();
@@ -10,7 +18,7 @@ try {
         const username: FormDataEntryValue | null = signupFormData.get("username");
         const password: FormDataEntryValue | null = signupFormData.get("password");
 
-        const signupPayload = {
+        const signupPayload: Payload = {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -22,8 +30,8 @@ try {
         };
 
         fetch("/signup", signupPayload)
-        .then(async response => await response.json())
-        .catch(error => console.log(error));
+        .then(response => response.json())
+        .then(data => console.log(data));
     }
 
     signupForm?.addEventListener("submit", signupFormHandler);

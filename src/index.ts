@@ -1,5 +1,6 @@
 import "dotenv/config";
 import logger from "./middleware/logger.js";
+import signup from "./routes/signup.js";
 
 import express, { type Express } from "express";
 import path from "path";
@@ -9,7 +10,11 @@ const IP: string | undefined = process.env.IP;
 const PORT: string | undefined = process.env.PORT;
 
 try {
+    SERVER.use(express.json());
+
     SERVER.use(logger);
+
+    SERVER.post("/signup", signup);
 
     SERVER.use(
         express.static(

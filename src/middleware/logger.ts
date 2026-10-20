@@ -9,7 +9,6 @@ export default function logger(request: Request, response: Response, next: NextF
         console.log(
             request.method,
             request.url,
-            request.body
         );
 
         next();
